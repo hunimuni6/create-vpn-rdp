@@ -153,7 +153,7 @@ function saveConfigData {
 
 
 ########### Create RDP FILE ###########
-function create_RDP_FILE {
+function createRdpFile {
   $domain_user = $domainName + "\" + $userNameTextBox.Text
   $ipTargetHost = $IpTextBox.Text
   $currentUser = $userNameTextBox.Text
@@ -232,7 +232,7 @@ function create_RDP_FILE {
 
 
 if (($result -eq [System.Windows.Forms.DialogResult]::OK) ) {
-  create_RDP_FILE
+  createRdpFile
   createVPN
   autoConnectRDP
   saveConfigData
