@@ -1,0 +1,1 @@
+Powershell.exe -Command "& rasdial TI-VPN /disconnect"

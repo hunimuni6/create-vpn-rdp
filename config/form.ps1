@@ -1,3 +1,4 @@
+
 #Permission Admin
 If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
   $arguments = "& '" + $myinvocation.mycommand.definition + "'"
@@ -236,5 +237,4 @@ if (($result -eq [System.Windows.Forms.DialogResult]::OK) ) {
   createVPN
   autoConnectRDP
   saveConfigData
-  pause
 }
