@@ -155,10 +155,11 @@ function saveConfigData {
 
 ########### Create RDP FILE ###########
 function createRdpFile {
-  $domain_user = $domainName + "\" + $userNameTextBox.Text
-  $ipTargetHost = $IpTextBox.Text
-  $currentUser = $userNameTextBox.Text
-  $pathRDPWithUserName = "$pathFolderRDP\$nameRDP-$currentUser.rdp"
+  $domain_user = "$domainName\$($userNameTextBox.Text)"
+  $pathRdpWithUserName = "$pathFolderRDP\$nameRDP-$($userNameTextBox.Text).rdp"
+
+  $baseFolder = (get-item $PSScriptRoot).parent.FullName
+  $localCopyRdp = "$baseFolder\$nameRDP-$($userNameTextBox.Text).rdp"
 
   $rdp = "screen mode id:i:2
             use multimon:i:0
@@ -184,7 +185,7 @@ function createRdpFile {
             disable themes:i:0
             disable cursor setting:i:0
             bitmapcachepersistenable:i:1
-            full address:s:$ipTargetHost
+            full address:s:$($IpTextBox.Text)
             audiomode:i:0
             redirectprinters:i:0
             redirectcomports:i:0
@@ -212,7 +213,8 @@ function createRdpFile {
             enablerdsaadauth:i:0
     "
 
-  $rdp -f $nameRDP | Out-File -FilePath $pathRDPWithUserName
+  $rdp -f $nameRDP | Out-File -FilePath $pathRdpWithUserName
+  $rdp -f $nameRDP | Out-File -FilePath $localCopyRdp
 
 }
 
