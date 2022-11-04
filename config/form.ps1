@@ -139,7 +139,7 @@ function createVPN {
 function autoConnectRDP {
   $domainName = $domainName + "\" + $userNameTextBox.Text
   $ip = $IpTextBox.Text
-  cmdkey /generic:$ip /user:$domainName  /pass:$userPasswordTextBox.Text
+  cmdkey /generic:$ip /user:$domainName  /pass:$($userPasswordTextBox.Text)
   mstsc /v:$ip
 }
 
