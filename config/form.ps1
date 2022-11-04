@@ -132,7 +132,7 @@ function createVPN {
 
   Install-Module -Name VPNCredentialsHelper -Force
 
-  Set-VpnConnectionUsernamePassword -connectionname $nameVPN -username $userNameTextBox.Text -password $userPasswordTextBox.Text
+  Set-VpnConnectionUsernamePassword -connectionname $nameVPN -username $($userNameTextBox.Text) -password $($userPasswordTextBox.Text)
   rasdial $nameVPN $userNameTextBox.Text $userPasswordTextBox.Text
 }
 
