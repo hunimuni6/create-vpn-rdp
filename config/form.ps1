@@ -131,7 +131,7 @@ function createVPN {
   Add-VpnConnection -Name $nameVPN -ServerAddress $IP_VPN_GW -TunnelType "Pptp" -EncryptionLevel "NoEncryption"  -AuthenticationMethod MSChapv2 -AllUserConnection -RememberCredential -PassThru -Force
 
   Write-Host "Installing modules..." -ForegroundColor Green
-  Install-Module -Name VPNCredentialsHelper
+  Install-Module -Name VPNCredentialsHelper -Force
 
   Set-VpnConnectionUsernamePassword -connectionname $nameVPN -username $userNameTextBox.Text -password $userPasswordTextBox.Text
   rasdial $nameVPN $userNameTextBox.Text $userPasswordTextBox.Text
