@@ -129,6 +129,7 @@ function createVPN {
   rasdial $nameVPN /disconnect
   Remove-VpnConnection -Name $nameVPN -PassThru -AllUserConnection -Force
   Add-VpnConnection -Name $nameVPN -ServerAddress $IP_VPN_GW -TunnelType "Pptp" -EncryptionLevel "NoEncryption"  -AuthenticationMethod MSChapv2 -AllUserConnection -RememberCredential -PassThru -Force
+
   Write-Host "Installing modules..." -ForegroundColor Green
   Install-Module -Name VPNCredentialsHelper -Force
 
@@ -137,10 +138,7 @@ function createVPN {
 }
 
 function autoConnectRDP {
-  $domainName = $domainName + "\" + $userNameTextBox.Text
-  $ip = $IpTextBox.Text
-  cmdkey /generic:$ip /user:$domainName  /pass:$userPasswordTextBox.Text
-  mstsc /v:$ip
+  mstsc /v:$($IpTextBox.Text)
 }
 
 function saveConfigData {
@@ -160,6 +158,8 @@ function createRdpFile {
 
   $baseFolder = (get-item $PSScriptRoot).parent.FullName
   $localCopyRdp = "$baseFolder\$nameRDP-$($userNameTextBox.Text).rdp"
+
+  cmdkey /generic:$IpTextBox.Text /user:$domain_user /pass:$userPasswordTextBox.Text
 
   $rdp = "screen mode id:i:2
             use multimon:i:0
