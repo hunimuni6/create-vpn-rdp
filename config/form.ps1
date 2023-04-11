@@ -159,8 +159,7 @@ function createRdpFile {
   $baseFolder = (get-item $PSScriptRoot).parent.FullName
   $localCopyRdp = "$baseFolder\$nameRDP-$($userNameTextBox.Text).rdp"
 
-  cmdkey /generic:$IpTextBox.Text /user:$domain_user /pass:$userPasswordTextBox.Text
-
+  cmdkey /generic:$IpTextBox.Text /user:$domain_user /pass:$($userPasswordTextBox.Text)
   $rdp = "screen mode id:i:2
             use multimon:i:0
             desktopwidth:i:1920
